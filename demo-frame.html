@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Chart Demo</title>
+	<link rel="stylesheet" href="sencha-touch.css">
+    <style>
+        body{
+            background-color: #fff;
+        }
+    </style>
+	<script src="js/sencha-touch-all-debug.js"></script>
+	<script>
+		function loadInlineExample(code, options) {
+            try {
+                document.body.innerHTML = '';
+
+                // Show error-message to non-WebKit browsers
+                if (!/webkit/i.test(navigator.userAgent)) {
+                    document.body.innerHTML = [
+                        "<div class='no-webkit'>",
+                        "<h1>Sencha Touch only functions on WebKit based browsers.</h1>",
+                        "<p>Please use Google Chrome or Safari to see live examples.</p>",
+                        "</div>"
+                    ].join("");
+                    callback && callback(false, "Non-WebKit browser.");
+                    return;
+                }
+
+                if (!options.raw) {
+                    code = "Ext.setup({onReady: function(){" + code + "}});";
+                }
+                if (options.tablet) {
+                    // Scale example down to 70% size. Default font-size is 114%
+                    Ext.get('iframe-css').update("body {font-size: 79.8% !important}");
+                }
+                eval(code);
+            } catch (e) {
+                document.body.innerHTML = e;
+            }
+        }
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
